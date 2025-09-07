@@ -2,6 +2,7 @@ import { Download, Github, Linkedin, Mail } from "lucide-react";
 import { googleColors } from "@/data/googleColors";
 import Image from "next/image";
 import profilePic from "@/assets/profile3.png";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -55,14 +56,14 @@ export default function Hero() {
                 { icon: Linkedin, color: googleColors.red },
                 { icon: Mail, color: googleColors.green },
               ].map(({ icon: Icon, color }, idx) => (
-                <a
+                <Link
                   key={idx}
                   href="#"
                   className="p-3 rounded-full hover:scale-110 transition-transform"
                   style={{ backgroundColor: color + "15", color }}
                 >
                   <Icon size={24} />
-                </a>
+                </Link>
               ))}
             </div>
           </div>

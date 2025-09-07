@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { X, Menu } from "lucide-react";
 import { googleColors } from "@/data/googleColors";
+import Link from "next/link";
 
 export default function Header() {
 const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,14 +20,14 @@ const [isMenuOpen, setIsMenuOpen] = useState(false);
             {/* Desktop Menu */}
             <div className="hidden md:flex space-x-8">
               {['Início', 'Sobre', 'Projetos', 'Skills', 'Contato'].map((item, idx) => (
-                <a 
+                <Link 
                   key={item} 
                   href={`#${item.toLowerCase()}`} 
                   className="hover:opacity-80 transition-opacity font-medium"
                   style={{color: Object.values(googleColors)[idx % 4]}}
                 >
                   {item}
-                </a>
+                </Link>
               ))}
             </div>
 
@@ -46,14 +47,14 @@ const [isMenuOpen, setIsMenuOpen] = useState(false);
           <div className="md:hidden bg-white border-t">
             <div className="px-4 py-4 space-y-4">
               {['Início', 'Sobre', 'Projetos', 'Skills', 'Contato'].map((item) => (
-                <a 
+                <Link 
                   key={item} 
                   href={`#${item.toLowerCase()}`} 
                   className="block hover:opacity-80 transition-opacity"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
