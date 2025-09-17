@@ -4,7 +4,7 @@ import ContactEmail from "@/emails/ContactEmail";
 import { render } from "@react-email/render";
 import React from "react";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend("re_AGv51qYN_2vZL4YiWZTy5VgHe9oKMLGq8");
 
 export async function POST(request: Request) {
   const { name, email, message } = await request.json();
@@ -15,8 +15,8 @@ export async function POST(request: Request) {
 
   try {
     const data = await resend.emails.send({
-      from: `${process.env.EMAIL_FROM}`,
-      to: [`${process.env.EMAIL_TO}`],
+      from: `onboarding@resend.dev`,
+      to: [`vitiliodesousa@gmail.com`],
       subject: `Nova mensagem do portifolio`,
       html: emailHtml,
     });
