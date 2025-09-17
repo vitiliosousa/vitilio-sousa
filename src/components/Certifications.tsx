@@ -6,8 +6,6 @@ import Image from "next/image";
 
 export default function Certifications() {
 
-  const categories = [...new Set(certifications.map(cert => cert.category))];
-
   return (
     <section id="certificacoes" className="py-16 bg-gradient-to-br from-white to-gray-50">
       <div className="max-w-7xl mx-auto px-4">
@@ -24,7 +22,7 @@ export default function Certifications() {
 
         {/* Certifications Grid - Mais compacto */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {certifications.map((cert, idx) => (
+          {certifications.map((cert) => (
             <div
               key={cert.id}
               className="group bg-white p-5 rounded-xl shadow-sm hover:shadow-md transition-all border hover:scale-[1.02]"
