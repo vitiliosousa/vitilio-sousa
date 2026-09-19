@@ -1,5 +1,5 @@
 import { googleColors } from "@/data/googleColors";
-import { SiJavascript, SiReact, SiNextdotjs, SiNodedotjs, SiPython, SiPostgresql, SiMysql, SiMongodb, SiSpringboot, SiFigma, SiGit, SiHtml5, SiCss, SiTailwindcss, SiSupabase, SiTypescript, SiDocker} from "react-icons/si";
+import { SiJavascript, SiReact, SiNextdotjs, SiNodedotjs, SiPython, SiPostgresql, SiMysql, SiMongodb, SiSpringboot, SiFigma, SiGit, SiHtml5, SiCss, SiTailwindcss, SiSupabase, SiTypescript, SiDocker, SiFlutter, SiGo, SiNestjs, SiFastapi} from "react-icons/si";
 import { FaJava } from "react-icons/fa";
 
 export const skillsData = [
@@ -15,6 +15,10 @@ export const skillsData = [
   { name: "Python", icon: <SiPython size={32} color={googleColors.yellow} />, color: googleColors.blue },
   { name: "Java", icon: <FaJava size={32} color={googleColors.red} />, color: googleColors.blue },
   { name: "Spring Boot", icon: <SiSpringboot size={32} color={googleColors.green} />, color: googleColors.green },
+  { name: "NestJS", icon: <SiNestjs size={32} color={googleColors.red} />, color: googleColors.red },
+  { name: "FastAPI", icon: <SiFastapi size={32} color={googleColors.green} />, color: googleColors.green },
+  { name: "Go", icon: <SiGo size={32} color={googleColors.blue} />, color: googleColors.blue },
+  { name: "Flutter", icon: <SiFlutter size={32} color={googleColors.blue} />, color: googleColors.blue },
   { name: "PostgreSQL", icon: <SiPostgresql size={32} color={googleColors.blue} />, color: googleColors.blue },
   { name: "MySQL", icon: <SiMysql size={32} color={googleColors.blue} />, color: googleColors.blue },
   { name: "MongoDB", icon: <SiMongodb size={32} color={googleColors.green} />, color: googleColors.green },

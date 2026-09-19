@@ -1,9 +1,53 @@
 'use client'
 
+import { useEffect, useRef, useState } from "react";
 import { googleColors } from "@/data/googleColors";
 import { projectsData as projects } from "@/data/projectsData";
-import { ExternalLink, Github, Code2 } from "lucide-react";
+import { ExternalLink, Github, Code2, ChevronDown } from "lucide-react";
 import Image from "next/image";
+
+function ProjectDescription({ text, color }: { text: string; color: string }) {
+  const ref = useRef<HTMLParagraphElement>(null);
+  const [expanded, setExpanded] = useState(false);
+  const [overflows, setOverflows] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const measure = () => {
+      if (!expanded) setOverflows(el.scrollHeight > el.clientHeight + 1);
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, [text, expanded]);
+
+  return (
+    <>
+      <p
+        ref={ref}
+        className={`text-gray-600 leading-relaxed ${expanded ? "" : "line-clamp-3"}`}
+      >
+        {text}
+      </p>
+      {(overflows || expanded) && (
+        <button
+          type="button"
+          onClick={() => setExpanded((v) => !v)}
+          aria-expanded={expanded}
+          className="mt-2 inline-flex items-center gap-1 text-sm font-semibold hover:underline"
+          style={{ color }}
+        >
+          {expanded ? "Ver menos" : "Ver mais"}
+          <ChevronDown
+            size={14}
+            className={`transition-transform ${expanded ? "rotate-180" : ""}`}
+          />
+        </button>
+      )}
+    </>
+  );
+}
 
 export default function Projects() {
   return (
@@ -17,7 +61,7 @@ export default function Projects() {
             <span style={{ color: googleColors.yellow }}>Projetos</span>
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Uma seleção de alguns dos meus trabalhos que tem a componente visual.
+            Uma seleção dos meus trabalhos, entre projectos para empresas e projectos próprios.
           </p>
         </div>
 
@@ -102,9 +146,7 @@ export default function Projects() {
                   >
                     {project.title}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed line-clamp-3">
-                    {project.description}
-                  </p>
+                  <ProjectDescription text={project.description} color={project.color} />
                 </div>
 
                 {/* Tech Stack */}
@@ -177,12 +219,6 @@ export default function Projects() {
           }
         }
         
-        .line-clamp-3 {
-          display: -webkit-box;
-          -webkit-line-clamp: 3;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
       `}</style>
     </section>
   );
