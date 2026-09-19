@@ -1,4 +1,5 @@
 import { googleColors } from "@/data/googleColors";
+import { projectsData } from "@/data/projectsData";
 import { Code, Database, Shield, Trophy, BookOpen, Users } from "lucide-react";
 
 export default function About() {
@@ -20,7 +21,7 @@ export default function About() {
     {
       icon: Trophy,
       title: "Projectos",
-      value: "10+ Concluídos",
+      value: `${projectsData.filter((p) => p.status === "Concluído").length} Concluídos`,
       color: googleColors.red,
       description: "Projetos que demonstram capacidade de resolver problemas reais com tecnologia",
     },

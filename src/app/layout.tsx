@@ -3,7 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 
 const outfit = Poppins({
-  weight: "400",
+  weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
 });
 
@@ -49,17 +49,15 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Vitilio Sousa - Developer Full Stack",
     description: "Portfólio e projetos de Vitilio Sousa.",
-    creator: "@VitilioM", // se tiveres Twitter coloca aqui
+    creator: "@VitilioM",
     images: ["/og-image.png"],
   },
 
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
-    apple: "/og-image.png",
   },
 
-  manifest: "/site.webmanifest",
 };
 
 export default function RootLayout({

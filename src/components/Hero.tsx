@@ -14,7 +14,7 @@ import profilePic from "@/assets/profile3.png";
 export default function Hero() {
   return (
     <section
-      id="início"
+      id="inicio"
       className="pt-20 pb-16 px-4 bg-gradient-to-br from-white to-gray-50 relative overflow-hidden"
     >
       {/* Google Colors Background Pattern */}

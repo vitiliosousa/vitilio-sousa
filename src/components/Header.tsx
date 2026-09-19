@@ -1,13 +1,13 @@
 'use client'
 import { useState, useEffect } from "react";
-import { X, Menu, Download, ExternalLink } from "lucide-react";
+import { X, Menu, ExternalLink } from "lucide-react";
 import { googleColors } from "@/data/googleColors";
 import Link from "next/link";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('início');
+  const [activeSection, setActiveSection] = useState('inicio');
 
   // Detect scroll for dynamic styling
   useEffect(() => {
@@ -21,7 +21,7 @@ export default function Header() {
   // Detect active section for highlighting
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['início', 'sobre', 'projetos', 'skills', 'contato'];
+      const sections = ['inicio', 'sobre', 'projetos', 'skills', 'contato'];
       const scrollPosition = window.scrollY + 100;
 
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -38,7 +38,7 @@ export default function Header() {
   }, []);
 
   const menuItems = [
-    { name: 'Início', href: '#início', color: googleColors.blue },
+    { name: 'Início', href: '#inicio', color: googleColors.blue },
     { name: 'Sobre', href: '#sobre', color: googleColors.red },
     { name: 'Projetos', href: '#projetos', color: googleColors.yellow },
     { name: 'Skills', href: '#skills', color: googleColors.green },
@@ -57,7 +57,7 @@ export default function Header() {
         <div className="flex justify-between items-center py-4">
           {/* Logo with Google Colors */}
           <Link 
-            href="#início" 
+            href="#inicio" 
             className="group flex items-center space-x-1 hover:scale-105 transition-transform"
           >
             <div className="text-2xl font-bold tracking-tight">
@@ -133,16 +133,6 @@ export default function Header() {
 
           {/* CTA Button + Mobile Menu */}
           <div className="flex items-center space-x-4">
-            {/* Desktop CTA */}
-            <a
-              href="/cv-vitilio-sousa.pdf"
-              download
-              className="hidden md:flex items-center gap-2 px-4 py-2 rounded-full text-white font-semibold hover:scale-105 transition-all shadow-lg hover:shadow-xl"
-              style={{ backgroundColor: googleColors.green }}
-            >
-              <Download size={16} />
-              <span className="text-sm">Download CV</span>
-            </a>
 
             {/* Mobile Menu Button */}
             <button 
@@ -190,17 +180,6 @@ export default function Header() {
               </Link>
             ))}
             
-            {/* Mobile CTA */}
-            <a
-              href="/cv-vitilio-sousa.pdf"
-              download
-              className="flex items-center justify-center gap-3 p-4 rounded-xl text-white font-bold shadow-lg hover:scale-105 transition-all mt-4"
-              style={{ backgroundColor: googleColors.green }}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              <Download size={20} />
-              <span>Download CV</span>
-            </a>
           </div>
         </div>
       </div>

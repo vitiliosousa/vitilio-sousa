@@ -10,7 +10,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
-    { name: 'Início', href: '#início' },
+    { name: 'Início', href: '#inicio' },
     { name: 'Sobre', href: '#sobre' },
     { name: 'Projetos', href: '#projetos' },
     { name: 'Skills', href: '#skills' },
@@ -97,7 +97,7 @@ export default function Footer() {
               <div className="flex items-center gap-3 text-gray-300">
                 <Mail size={18} style={{ color: googleColors.green }} />
                 <a 
-                  href="mailto:vitilio@example.com" 
+                  href="mailto:vitiliodesousa@gmail.com" 
                   className="hover:text-white transition-colors"
                   style={{ color: googleColors.green }}
                 >

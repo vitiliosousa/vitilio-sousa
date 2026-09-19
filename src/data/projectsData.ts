@@ -4,9 +4,6 @@ import bug from "@/assets/bug.png"
 import cyber from "@/assets/cyber.png"
 import girl from "@/assets/girl.png"
 import laisher from "@/assets/laisher.png"
-import xbox from "@/assets/xbox.png"
-import tesla from "@/assets/tesla.png"
-import jordan from "@/assets/jordan.png"
 
 export const projectsData = [
     {
@@ -25,7 +22,7 @@ export const projectsData = [
       description: "Website institucional da comunidade MozCyber, com informações sobre eventos, workshops e integração com membros.",
       tech: ["Next.js", "TailwindCSS", "Supabase"],
       color: googleColors.red,
-      status: "Concluido",
+      status: "Concluído",
       demo: "https://mozcyber.org",
       image: cyber,
     },
@@ -49,37 +46,5 @@ export const projectsData = [
       status: "Concluído",
       demo: "https://laisher.co.mz",
       image: laisher,
-    },
-    {
-      id: 5,
-      title: "Xbox",
-      description: "Landing page de uma pagina ficticia da xbox.",
-      tech: ["React", "Vite", "TailwindCSS"],
-      color: googleColors.blue,
-      status: "Concluído",
-      demo: "https://xbox-five-iota.vercel.app/",
-      image: xbox,
-      github:"https://github.com/vitiliosousa/Xbox"
-    },
-    {
-      id: 6,
-      title: "Jordan",
-      description: "Landing page de uma pagina ficticia de venda de jordans.",
-      tech: ["React", "Vite", "TailwindCSS"],
-      color: googleColors.red,
-      status: "Concluído",
-      demo: "https://jordan-three.vercel.app/",
-      image: jordan,
-      github:"https://github.com/vitiliosousa/Jordan"
-    },
-    {
-      id: 7,
-      title: "Tesla Bank",
-      description: "Landing page de uma pagina ficticia de um banco.",
-      tech: ["React", "Vite", "TailwindCSS"],
-      color: googleColors.yellow,
-      status: "Concluído",
-      demo: "https://tesla-bank-nu.vercel.app/",
-      image: tesla,
     },
 ];

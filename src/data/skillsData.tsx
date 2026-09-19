@@ -1,10 +1,10 @@
 import { googleColors } from "@/data/googleColors";
-import { SiJavascript, SiReact, SiNextdotjs, SiNodedotjs, SiPython, SiPostgresql, SiMysql, SiMongodb, SiSpringboot, SiFigma, SiGit, SiHtml5, SiCss3, SiTailwindcss, SiSupabase, SiTypescript, SiDocker} from "react-icons/si";
+import { SiJavascript, SiReact, SiNextdotjs, SiNodedotjs, SiPython, SiPostgresql, SiMysql, SiMongodb, SiSpringboot, SiFigma, SiGit, SiHtml5, SiCss, SiTailwindcss, SiSupabase, SiTypescript, SiDocker} from "react-icons/si";
 import { FaJava } from "react-icons/fa";
 
 export const skillsData = [
   { name: "HTML", icon: <SiHtml5 size={32} color={googleColors.red} />, color: googleColors.red },
-  { name: "CSS", icon: <SiCss3 size={32} color={googleColors.blue} />, color: googleColors.blue },
+  { name: "CSS", icon: <SiCss size={32} color={googleColors.blue} />, color: googleColors.blue },
   { name: "JavaScript", icon: <SiJavascript size={32} color={googleColors.yellow} />, color: googleColors.yellow },
   { name: "TypeScript", icon: <SiTypescript size={32} color={googleColors.blue} />, color: googleColors.blue },
   { name: "React", icon: <SiReact size={32} color={googleColors.blue} />, color: googleColors.blue },
