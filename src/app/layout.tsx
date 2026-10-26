@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Raleway, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import Effects from "@/components/Effects";
 
-const outfit = Poppins({
-  weight: ["400", "500", "600", "700"],
+const raleway = Raleway({
   subsets: ["latin"],
+  variable: "--font-sans",
+});
+
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
 });
 
 export const metadata: Metadata = {
@@ -68,9 +74,12 @@ export default function RootLayout({
   return (
     <html lang="pt">
       <body
-        className={`${outfit.className} antialiased`}
+        className={`${raleway.variable} ${mono.variable} font-sans antialiased`}
         suppressHydrationWarning
       >
+        <div className="ambient" aria-hidden />
+        <div className="grain" aria-hidden />
+        <Effects />
         {children}
       </body>
     </html>

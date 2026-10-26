@@ -1,6 +1,10 @@
 'use client'
-import { googleColors } from "@/data/googleColors";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { ArrowUpRight, MapPin, Phone } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
+import Reveal from "./Reveal";
+import SectionTitle from "./SectionTitle";
+import Scramble from "./Scramble";
+import Magnetic from "./Magnetic";
 import { useState } from "react";
 
 export default function Contact() {
@@ -30,114 +34,64 @@ export default function Contact() {
     }
   };
 
+  const field =
+    "w-full px-5 py-4 rounded-2xl bg-white/[0.04] border border-white/10 placeholder:text-muted-foreground focus:outline-none focus:border-[#a6d85a]/60 focus:shadow-[0_0_0_4px_rgba(166,216,90,0.12)] transition-all";
+
   return (
-    <section id="contato" className="py-20 bg-gradient-to-br from-gray-50 to-white">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">
-            <span style={{ color: googleColors.yellow }}>Vamos</span>{" "}
-            <span style={{ color: googleColors.blue }}>Conversar</span>
-          </h2>
-          <p className="text-lg text-gray-600">
-            Interessado em trabalhar comigo? Entre em contato!
-          </p>
-        </div>
+    <section id="contato" className="py-28 px-4">
+      <Reveal className="max-w-6xl mx-auto">
+        <div className="glass relative overflow-hidden p-8 md:p-16">
+          <div className="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-[#e9d84f]/20 blur-3xl" />
+          <div className="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-[#3f8f86]/30 blur-3xl" />
 
-        <div className="grid md:grid-cols-2 gap-12">
-          {/* Lado esquerdo */}
-          <div className="space-y-8">
-            {[
-              {
-                icon: Mail,
-                label: "Email",
-                value: "vitiliodesousa@gmail.com",
-                color: googleColors.red,
-              },
-              {
-                icon: Phone,
-                label: "Telefone",
-                value: "+258 86 318 3634",
-                color: googleColors.blue,
-              },
-              {
-                icon: MapPin,
-                label: "Localização",
-                value: "Maputo, Moçambique",
-                color: googleColors.green,
-              },
-            ].map((contact, idx) => (
-              <div key={idx} className="flex items-center gap-4">
-                <div
-                  className="p-3 rounded-full"
-                  style={{ backgroundColor: contact.color + "15" }}
-                >
-                  <contact.icon size={24} style={{ color: contact.color }} />
-                </div>
-                <div>
-                  <h4 className="font-semibold">{contact.label}</h4>
-                  <p className="text-gray-600">{contact.value}</p>
-                </div>
+          <div className="relative grid lg:grid-cols-[1.1fr_1fr] gap-14">
+            <div>
+              <SectionTitle
+                eyebrow="Contacto"
+                lines={["Vamos", <span key="b" className="text-accent-gradient">conversar.</span>]}
+              />
+
+              <p className="mt-6 text-muted-foreground max-w-md">
+                Para projectos, colaborações ou só para trocar ideias.
+              </p>
+
+              <a
+                href="mailto:vitiliodesousa@gmail.com"
+                className="group mt-8 inline-flex items-center gap-3 text-xl md:text-2xl border-b border-white/30 pb-2 hover:border-[#a6d85a] hover:text-[#a6d85a] transition-colors"
+              >
+                <Scramble text="vitiliodesousa@gmail.com" />
+                <ArrowUpRight className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </a>
+
+              <div className="mt-8 flex flex-col gap-3 text-sm text-muted-foreground">
+                <a href="tel:+258863183634" className="inline-flex items-center gap-3 hover:text-foreground transition-colors"><Phone size={16} className="text-[#a6d85a]" /> +258 86 318 3634</a>
+                <a href="https://wa.me/258863183634" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 hover:text-foreground transition-colors"><FaWhatsapp size={16} className="text-[#a6d85a]" /> WhatsApp</a>
+                <span className="inline-flex items-center gap-3"><MapPin size={16} className="text-[#a6d85a]" /> Maputo, Moçambique</span>
               </div>
-            ))}
+            </div>
+
+            <form className="space-y-4" onSubmit={handleSubmit}>
+              <input type="text" placeholder="O teu nome" className={field} value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
+              <input type="email" placeholder="O teu email" className={field} value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
+              <textarea placeholder="A tua mensagem" rows={5} className={`${field} resize-none`} value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })} />
+              <Magnetic strength={0.12}>
+                <button className="btn-accent px-10 py-4 text-sm" type="submit">
+                  Enviar mensagem
+                </button>
+              </Magnetic>
+              {status === "success" && (
+                <p className="text-sm text-[#a6d85a]">Mensagem enviada! Respondo em breve.</p>
+              )}
+              {status === "error" && (
+                <p className="text-sm text-destructive">Erro ao enviar. Tenta novamente mais tarde.</p>
+              )}
+            </form>
           </div>
-
-          {/* Formulário */}
-          <form className="space-y-6" onSubmit={handleSubmit}>
-            <div>
-              <input
-                type="text"
-                placeholder="Seu nome"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
-                value={formData.name}
-                onChange={(e) =>
-                  setFormData({ ...formData, name: e.target.value })
-                }
-              />
-            </div>
-            <div>
-              <input
-                type="email"
-                placeholder="Seu email"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
-                value={formData.email}
-                onChange={(e) =>
-                  setFormData({ ...formData, email: e.target.value })
-                }
-              />
-            </div>
-            <div>
-              <textarea
-                placeholder="Sua mensagem"
-                rows={5}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 resize-none"
-                value={formData.message}
-                onChange={(e) =>
-                  setFormData({ ...formData, message: e.target.value })
-                }
-              ></textarea>
-            </div>
-            <button
-              className="w-full py-3 rounded-lg text-white font-semibold hover:opacity-90 transition-opacity"
-              style={{ backgroundColor: googleColors.blue }}
-              type="submit"
-            >
-              Enviar Mensagem
-            </button>
-
-            {/* Mensagem de feedback */}
-            {status === "success" && (
-              <p className="text-green-600 font-medium">
-                ✅ Mensagem enviada com sucesso! Entraremos em contato em breve.
-              </p>
-            )}
-            {status === "error" && (
-              <p className="text-red-600 font-medium">
-                ❌ Erro ao enviar mensagem. Tente novamente mais tarde.
-              </p>
-            )}
-          </form>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

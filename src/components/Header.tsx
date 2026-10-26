@@ -1,188 +1,102 @@
 'use client'
 import { useState, useEffect } from "react";
-import { X, Menu, ExternalLink } from "lucide-react";
-import { googleColors } from "@/data/googleColors";
+import { X, Menu } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+const menuItems = [
+  { name: 'Início', href: '/#inicio' },
+  { name: 'Sobre', href: '/#sobre' },
+  { name: 'Projectos', href: '/#projetos' },
+  { name: 'Skills', href: '/#skills' },
+  { name: 'Processo', href: '/#processo' },
+];
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('inicio');
+  const pathname = usePathname();
+  const onHome = pathname === '/';
 
-  // Detect scroll for dynamic styling
   useEffect(() => {
+    const sections = ['inicio', 'sobre', 'projetos', 'skills', 'processo', 'contato'];
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Detect active section for highlighting
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['inicio', 'sobre', 'projetos', 'skills', 'contato'];
-      const scrollPosition = window.scrollY + 100;
-
+      const position = window.scrollY + 120;
       for (let i = sections.length - 1; i >= 0; i--) {
         const element = document.getElementById(sections[i]);
-        if (element && element.offsetTop <= scrollPosition) {
+        if (element && element.offsetTop <= position) {
           setActiveSection(sections[i]);
           break;
         }
       }
     };
-
-    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const menuItems = [
-    { name: 'Início', href: '#inicio', color: googleColors.blue },
-    { name: 'Sobre', href: '#sobre', color: googleColors.red },
-    { name: 'Projetos', href: '#projetos', color: googleColors.yellow },
-    { name: 'Skills', href: '#skills', color: googleColors.green },
-    { name: 'Contacto', href: '#contato', color: googleColors.blue },
-  ];
-
   return (
-    <nav 
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-200' 
-          : 'bg-white/90 backdrop-blur-sm border-b border-gray-100'
+    <header
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 border-b ${
+        isScrolled || isMenuOpen
+          ? 'bg-[#141414]/80 backdrop-blur-xl border-white/10'
+          : 'bg-transparent border-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
-          {/* Logo with Google Colors */}
-          <Link 
-            href="#inicio" 
-            className="group flex items-center space-x-1 hover:scale-105 transition-transform"
-          >
-            <div className="text-2xl font-bold tracking-tight">
-              <span 
-                style={{color: googleColors.yellow}} 
-                className="group-hover:scale-110 inline-block transition-transform"
-              >
-                {"<"}
-              </span>
-              <span 
-                style={{color: googleColors.blue}} 
-                className="group-hover:scale-105 inline-block transition-transform"
-              >
-                Vitilio
-              </span>
-              <span 
-                style={{color: googleColors.red}}
-                className="group-hover:scale-105 inline-block transition-transform"
-              >
-                Sousa
-              </span>
-              <span 
-                style={{color: googleColors.green}}
-                className="group-hover:scale-110 inline-block transition-transform"
-              >
-                {"/>"}
-              </span>
-            </div>
-          </Link>
-          
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-5">
-            {menuItems.map((item) => (
-              <Link 
-                key={item.name} 
-                href={item.href} 
-                className={`relative text-sm px-6 py-2 rounded-full font-semibold transition-all duration-200 hover:scale-105 ${
-                  activeSection === item.href.substring(1)
-                    ? 'text-white shadow-lg transform scale-105'
-                    : 'text-gray-700 hover:text-white'
+      <nav className="mx-auto max-w-6xl flex items-center justify-between px-4 h-16">
+        <Link href="/#inicio" className="group font-mono text-base tracking-tight">
+          <span className="text-[#a6d85a] group-hover:text-[#ecd94c] transition-colors">&lt;</span>
+          vitiliosousa
+          <span className="text-[#a6d85a] group-hover:text-[#ecd94c] transition-colors">/&gt;</span>
+        </Link>
+
+        <div className="hidden md:flex items-center gap-8">
+          {menuItems.map((item) => {
+            const active = onHome && activeSection === item.href.substring(2);
+            return (
+              <Link
+                key={item.name}
+                href={item.href}
+                className={`relative text-sm py-1 transition-colors ${
+                  active ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
                 }`}
-                style={{
-                  backgroundColor: activeSection === item.href.substring(1) ? item.color : 'transparent',
-                  ...(activeSection !== item.href.substring(1) && {
-                    ':hover': { backgroundColor: item.color + '15' }
-                  })
-                }}
-                onMouseEnter={(e) => {
-                  if (activeSection !== item.href.substring(1)) {
-                    const target = e.target as HTMLElement;
-                    target.style.backgroundColor = item.color + '15';
-                    target.style.color = item.color;
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (activeSection !== item.href.substring(1)) {
-                    const target = e.target as HTMLElement;
-                    target.style.backgroundColor = 'transparent';
-                    target.style.color = '#374151';
-                  }
-                }}
               >
                 {item.name}
-                {activeSection === item.href.substring(1) && (
-                  <div 
-                    className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-2 rounded-full"
-                    style={{ backgroundColor: 'white' }}
-                  />
-                )}
+                <span
+                  className={`absolute left-0 -bottom-0.5 h-px bg-gradient-to-r from-[#ecd94c] to-[#9bd160] transition-all duration-300 ${
+                    active ? 'w-full' : 'w-0'
+                  }`}
+                />
               </Link>
-            ))}
-          </div>
+            );
+          })}
+        </div>
 
-          {/* CTA Button + Mobile Menu */}
-          <div className="flex items-center space-x-4">
+        <Link href="/#contato" className="hidden md:inline-block btn-accent text-sm px-5 py-2">
+          Contacto
+        </Link>
 
-            {/* Mobile Menu Button */}
-            <button 
-              className={`md:hidden p-2 rounded-full transition-all ${
-                isMenuOpen 
-                  ? 'bg-red-500 text-white scale-110 shadow-lg' 
-                  : 'text-gray-700 hover:bg-gray-100'
-              }`}
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-label={isMenuOpen ? "Fechar menu" : "Abrir Menu"}
+        <button className="md:hidden p-2" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Menu">
+          {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
+        </button>
+      </nav>
+
+      {isMenuOpen && (
+        <div className="md:hidden px-4 pb-4 flex flex-col">
+          {[...menuItems, { name: 'Contacto', href: '/#contato' }].map((item) => (
+            <Link
+              key={item.name}
+              href={item.href}
+              onClick={() => setIsMenuOpen(false)}
+              className="py-3 text-muted-foreground hover:text-foreground border-t border-white/5"
             >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
+              {item.name}
+            </Link>
+          ))}
         </div>
-      </div>
-      
-      {/* Mobile Menu */}
-      <div 
-        className={`md:hidden overflow-hidden transition-all duration-300 ${
-          isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-        }`}
-      >
-        <div className="bg-white/98 backdrop-blur-md border-t border-gray-200 shadow-lg">
-          <div className="px-4 py-6 space-y-3">
-            {menuItems.map((item) => (
-              <Link 
-                key={item.name} 
-                href={item.href} 
-                className={`flex items-center justify-between p-4 rounded-xl font-semibold transition-all ${
-                  activeSection === item.href.substring(1)
-                    ? 'text-white shadow-lg transform scale-105'
-                    : 'text-gray-700 hover:scale-105'
-                }`}
-                style={{
-                  backgroundColor: activeSection === item.href.substring(1) 
-                    ? item.color 
-                    : item.color + '10',
-                  border: `2px solid ${item.color}20`
-                }}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                <span>{item.name}</span>
-                <ExternalLink size={16} />
-              </Link>
-            ))}
-            
-          </div>
-        </div>
-      </div>
-    </nav>
-  ) 
+      )}
+    </header>
+  );
 }
