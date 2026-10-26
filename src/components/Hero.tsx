@@ -113,7 +113,7 @@ export default function Hero() {
           <div className="parallax absolute inset-0" style={{ "--f": 8 } as React.CSSProperties}>
             <div className="absolute left-1/2 top-[6%] -translate-x-1/2 w-[110%] h-[78%] rounded-[50%] bg-gradient-to-b from-[#ecd94c]/35 via-[#9bd160]/20 to-transparent blur-3xl" />
             {/* anel da órbita */}
-            <div className="absolute left-1/2 top-[60%] w-[124%] h-[26%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-white/10" style={{ rotate: "-9deg" }} />
+            <div className="absolute left-1/2 top-[60%] w-[96%] lg:w-[124%] h-[26%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-white/10" style={{ rotate: "-9deg" }} />
           </div>
 
           <div className="parallax relative" style={{ "--f": -8 } as React.CSSProperties}>
@@ -146,14 +146,14 @@ export default function Hero() {
           </div>
 
           {/* Terminal */}
-          <div className="parallax absolute -left-2 lg:-left-20 -bottom-6 z-40" style={{ "--f": 18 } as React.CSSProperties}>
+          <div className="parallax relative mt-6 w-fit mx-auto lg:mt-0 lg:mx-0 lg:absolute lg:-left-20 lg:-bottom-6 z-40" style={{ "--f": 18 } as React.CSSProperties}>
             <div className="subir" style={{ animationDelay: "1000ms" }}>
               <Terminal />
             </div>
           </div>
 
           {/* Relógio */}
-          <div className="parallax absolute right-0 lg:-right-6 -bottom-2 z-40" style={{ "--f": 12 } as React.CSSProperties}>
+          <div className="parallax relative mt-3 w-fit mx-auto lg:mt-0 lg:mx-0 lg:absolute lg:-right-6 lg:-bottom-2 z-40" style={{ "--f": 12 } as React.CSSProperties}>
             <div className="subir" style={{ animationDelay: "1200ms" }}>
               <GithubChip />
             </div>

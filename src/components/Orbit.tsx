@@ -34,7 +34,7 @@ export default function Orbit() {
       raf = requestAnimationFrame(tick);
       if (!visible) return;
       const { width, height } = el.getBoundingClientRect();
-      const rx = width * 0.62, ry = height * 0.13;
+      const rx = width * (innerWidth < 640 ? 0.47 : 0.62), ry = height * 0.13;
       const tilt = (-9 * Math.PI) / 180;
       const base = reduce ? 0 : t / 1000 * 0.38;
       nodes.current.forEach((n, i) => {
