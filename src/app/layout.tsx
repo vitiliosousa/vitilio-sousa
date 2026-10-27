@@ -39,14 +39,6 @@ export const metadata: Metadata = {
     description: "Conheça o portfólio e projetos de Vitilio Sousa, desenvolvedor Full Stack.",
     url: "https://vitilio-sousa.vercel.app",
     siteName: "Vitilio Sousa",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Vitilio Sousa Portfolio",
-      },
-    ],
     locale: "pt_PT",
     type: "website",
   },
@@ -56,12 +48,6 @@ export const metadata: Metadata = {
     title: "Vitilio Sousa - Developer Full Stack",
     description: "Portfólio e projetos de Vitilio Sousa.",
     creator: "@VitilioM",
-    images: ["/og-image.png"],
-  },
-
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
   },
 
 };
