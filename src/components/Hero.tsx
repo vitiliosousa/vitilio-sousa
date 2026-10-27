@@ -18,22 +18,15 @@ function RotatingWord() {
     return () => clearInterval(t);
   }, []);
 
+  // Só uma palavra existe no DOM de cada vez; a mais comprida reserva a largura.
+  const longest = words.reduce((a, b) => (b.length > a.length ? b : a));
+
   return (
-    <span className="inline-grid align-bottom text-accent-gradient">
-      {words.map((w, k) => (
-        <span
-          key={w}
-          aria-hidden={k !== i}
-          className="col-start-1 row-start-1 transition-all duration-500 ease-out"
-          style={{
-            opacity: k === i ? 1 : 0,
-            transform: k === i ? "none" : k === (i + 1) % words.length ? "translateY(60%)" : "translateY(-60%)",
-            filter: k === i ? "none" : "blur(6px)",
-          }}
-        >
-          {w}
-        </span>
-      ))}
+    <span className="relative inline-block align-bottom">
+      <span aria-hidden className="invisible">{longest}</span>
+      <span key={words[i]} className="palavra text-accent-gradient absolute left-0 top-0 whitespace-nowrap">
+        {words[i]}
+      </span>
     </span>
   );
 }

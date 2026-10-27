@@ -237,6 +237,13 @@ section[id] {
   .subir, .revelar, .pairar, .girar { animation: none; }
 }
 
+/* Rotating word in the hero: each word is a fresh element that slides in */
+@keyframes palavra {
+  from { opacity: 0; transform: translateY(55%); filter: blur(6px); }
+  to { opacity: 1; transform: none; filter: none; }
+}
+.palavra { animation: palavra 0.55s cubic-bezier(0.2, 0.7, 0.2, 1); }
+
 /* Wipe reveal for headline lines */
 @keyframes revelar {
   from { clip-path: inset(0 100% 0 0); transform: translateX(-12px); }
