@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from "react";
 
-/** Eyebrow with a line that draws itself, then title lines that wipe in when scrolled into view. */
+/** Etiqueta com linha que se desenha, e título gigante cujas linhas entram por corte. */
 export default function SectionTitle({
   eyebrow,
   lines,
@@ -19,21 +19,21 @@ export default function SectionTitle({
     if (!el) return;
     const io = new IntersectionObserver(([e]) => {
       if (e.isIntersecting) { setOn(true); io.disconnect(); }
-    }, { threshold: 0.4 });
+    }, { threshold: 0.3 });
     io.observe(el);
     return () => io.disconnect();
   }, []);
 
   return (
     <div ref={ref} className={className}>
-      <div className="flex items-center gap-4 mb-6">
+      <div className="flex items-center gap-4 mb-7">
         <span
-          className="h-px bg-gradient-to-r from-[#ecd94c] to-[#9bd160] transition-all duration-700 ease-out"
-          style={{ width: on ? "3rem" : "0rem" }}
+          className="h-px bg-gradient-to-r from-[#ff8a2a] to-[#e5251b] transition-all duration-700 ease-out"
+          style={{ width: on ? "3.5rem" : "0rem" }}
         />
-        <p className="eyebrow">{eyebrow}</p>
+        <p className="caps">{eyebrow}</p>
       </div>
-      <h2 className="text-4xl md:text-6xl font-semibold leading-[1.05] tracking-tight">
+      <h2 className="display text-5xl sm:text-6xl md:text-8xl">
         {lines.map((l, i) => (
           <span
             key={i}

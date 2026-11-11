@@ -1,49 +1,28 @@
 'use client'
-import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight, ArrowRight, Github } from "lucide-react";
+import { useRef } from "react";
 import Image from "next/image";
+import { Github, Linkedin, Mail } from "lucide-react";
 import profilePic from "@/assets/profile.png";
-import DotField from "./DotField";
-import Orbit from "./Orbit";
-import Terminal from "./Terminal";
-import Scramble from "./Scramble";
-import Magnetic from "./Magnetic";
 
-const words = ["sites", "apps", "APIs", "sistemas"];
+const social = [
+  { icon: Github, href: "https://github.com/vitiliosousa", label: "GitHub" },
+  { icon: Linkedin, href: "https://linkedin.com/in/vitilio-sousa", label: "LinkedIn" },
+  { icon: Mail, href: "mailto:vitiliodesousa@gmail.com", label: "Email" },
+];
 
-function RotatingWord() {
-  const [i, setI] = useState(0);
-  useEffect(() => {
-    const t = setInterval(() => setI((v) => (v + 1) % words.length), 2400);
-    return () => clearInterval(t);
-  }, []);
-
-  // Só uma palavra existe no DOM de cada vez; a mais comprida reserva a largura.
-  const longest = words.reduce((a, b) => (b.length > a.length ? b : a));
-
+function Letters({ word, delay = 0 }: { word: string; delay?: number }) {
   return (
-    <span className="relative inline-block align-bottom">
-      <span aria-hidden className="invisible">{longest}</span>
-      <span key={words[i]} className="palavra text-accent-gradient absolute left-0 top-0 whitespace-nowrap">
-        {words[i]}
-      </span>
-    </span>
+    <>
+      {word.split("").map((l, i) => (
+        <span key={i} className="letra inline-block bg-gradient-to-b from-white to-[#8c8c8c] bg-clip-text text-transparent" style={{ animationDelay: `${delay + i * 80}ms` }}>
+          {l}
+        </span>
+      ))}
+    </>
   );
 }
 
-function GithubChip() {
-  return (
-    <a
-      href="https://github.com/vitiliosousa"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="glass flutuar-chip !rounded-full flex items-center gap-3 px-4 py-2 text-xs shadow-xl hover:border-[#a6d85a]/50"
-    >
-      <Github size={14} className="text-[#a6d85a]" />
-      <span className="font-mono">github.com/vitiliosousa</span>
-    </a>
-  );
-}
+const textStyle = "display absolute inset-x-0 text-center select-none pointer-events-none text-[21vw] md:text-[15.5vw]";
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -57,100 +36,66 @@ export default function Hero() {
   };
 
   return (
-    <section
-      id="inicio"
-      ref={ref}
-      onPointerMove={onMove}
-      className="relative overflow-hidden pt-24 lg:pt-16 flex flex-col lg:min-h-[100svh]"
-    >
-      <DotField />
+    <section id="inicio" ref={ref} onPointerMove={onMove} className="px-3 md:px-5 pt-3 md:pt-5">
+      <div className="frame overflow-hidden h-[calc(100svh-1.5rem)] md:h-[calc(100svh-2.5rem)] min-h-[640px]">
+        {/* Etiqueta */}
+        <div className="absolute top-[17%] md:top-[19%] right-[6%] z-30 flex border border-white/30 text-[0.6rem] tracking-[0.3em] uppercase">
+          <span className="px-2 py-1.5 bg-white text-black font-bold">26</span>
+          <span className="px-3 py-1.5">Portfolio</span>
+        </div>
 
-      <div className="relative z-10 flex-1 max-w-6xl w-full mx-auto px-4 grid lg:grid-cols-[1.1fr_1fr] gap-8 items-center pb-20 lg:pb-12">
-        {/* Texto */}
-        <div className="pt-24 lg:pt-28">
-          <p className="eyebrow subir mb-6" style={{ animationDelay: "200ms" }}>
-            Vitilio Sousa · Full-stack developer
-          </p>
-
-          <h1 className="text-5xl sm:text-6xl lg:text-[4.2rem] font-semibold leading-[1.04] tracking-tight">
-            <span className="revelar block" style={{ animationDelay: "350ms" }}>Desenvolvo</span>
-            <span className="revelar block" style={{ animationDelay: "500ms" }}><RotatingWord /></span>
-            <span className="revelar block" style={{ animationDelay: "650ms" }}>
-              que <Scramble text="funcionam." delay={900} className="text-accent-gradient" />
-            </span>
+        {/* Nome, parte de trás */}
+        <div className="parallax absolute inset-x-0 top-[36%] md:top-[10%] z-0" style={{ "--f": 14 } as React.CSSProperties}>
+          <h1 className={`${textStyle} relative`} aria-label="Vitilio Sousa">
+            <Letters word="VITILIO" delay={200} />
           </h1>
+        </div>
 
-          <p className="subir mt-8 text-lg text-muted-foreground max-w-md leading-relaxed" style={{ animationDelay: "800ms" }}>
-            Desenvolvo interfaces, APIs e aplicações móveis, acompanhando cada
-            produto do desenho à produção, com foco em código limpo e numa boa
-            experiência de utilização.
-          </p>
-
-          <div className="subir mt-10 flex flex-wrap items-center gap-6" style={{ animationDelay: "950ms" }}>
-            <Magnetic>
-              <a href="#projetos" className="btn-accent px-8 py-4 text-sm inline-flex items-center gap-2">
-                Ver projectos <ArrowUpRight size={16} />
-              </a>
-            </Magnetic>
-            <Magnetic strength={0.4}>
-              <a href="#contato" className="group inline-flex items-center gap-2 text-sm px-3 py-3 hover:text-[#a6d85a] transition-colors">
-                Contactar
-                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-              </a>
-            </Magnetic>
+        {/* Foto no meio */}
+        <div className="parallax absolute bottom-0 left-1/2 z-10 h-[58%] md:h-[90%] aspect-[3/4] -translate-x-1/2" style={{ "--f": -10 } as React.CSSProperties}>
+          <div className="relative h-full w-full subir" style={{ animationDelay: "500ms" }}>
+            <Image src={profilePic} alt="Vitilio Sousa" priority className="h-full w-full object-cover object-bottom" />
           </div>
         </div>
 
-        {/* Foto + órbita */}
-        <div className="relative mx-auto w-full max-w-sm lg:max-w-md">
-          <div className="parallax absolute inset-0" style={{ "--f": 8 } as React.CSSProperties}>
-            <div className="absolute left-1/2 top-[6%] -translate-x-1/2 w-[110%] h-[78%] rounded-[50%] bg-gradient-to-b from-[#ecd94c]/35 via-[#9bd160]/20 to-transparent blur-3xl" />
-            {/* anel da órbita */}
-            <div className="absolute left-1/2 top-[60%] w-[96%] lg:w-[124%] h-[26%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-white/10" style={{ rotate: "-9deg" }} />
-          </div>
+        {/* Nome, parte da frente */}
+        <div className="parallax absolute inset-x-0 top-[72%] md:top-[51%] z-20" style={{ "--f": 18 } as React.CSSProperties}>
+          <p aria-hidden className={`${textStyle} relative`}>
+            <Letters word="SOUSA" delay={650} />
+          </p>
+        </div>
 
-          <div className="parallax relative" style={{ "--f": -8 } as React.CSSProperties}>
-            <div
-              className="subir relative aspect-[3/4] z-10"
-              style={{
-                animationDelay: "300ms",
-                maskImage: "linear-gradient(to bottom, #000 78%, transparent 100%)",
-                WebkitMaskImage: "linear-gradient(to bottom, #000 78%, transparent 100%)",
-              }}
-            >
-              <Image src={profilePic} alt="Vitilio Sousa" priority className="w-full h-full object-cover" />
-            </div>
-            <Orbit />
-          </div>
+        {/* Bolhas */}
+        <span aria-hidden className="bolha absolute right-[30%] top-[33%] z-30 h-3 w-3 rounded-full border border-white/70" />
+        <span aria-hidden className="bolha absolute right-[26%] top-[38%] z-30 h-2 w-2 rounded-full border border-white/70" style={{ animationDelay: "2s" }} />
+        <span aria-hidden className="bolha absolute right-[33%] top-[40%] z-30 h-1.5 w-1.5 rounded-full border border-white/70" style={{ animationDelay: "4s" }} />
 
-          {/* Selo giratório */}
-          <div className="parallax absolute -top-2 -right-2 lg:-right-8 z-40" style={{ "--f": 16 } as React.CSSProperties}>
-            <div className="subir relative w-28 h-28" style={{ animationDelay: "1100ms" }}>
-              <svg viewBox="0 0 120 120" className="girar w-full h-full">
-                <defs><path id="circ" d="M60 60 m-46 0 a46 46 0 1 1 92 0 a46 46 0 1 1 -92 0" /></defs>
-                <text className="fill-foreground" fontSize="10.5" letterSpacing="3" fontFamily="var(--font-mono)">
-                  <textPath href="#circ">WEB • MOBILE • BACKEND • DADOS •</textPath>
-                </text>
-              </svg>
-              <span className="absolute inset-0 m-auto w-9 h-9 rounded-full bg-[#141414] border border-white/20 flex items-center justify-center text-[#a6d85a] font-mono text-xs">
-                {"</>"}
-              </span>
-            </div>
+        {/* Descrição, canto inferior esquerdo */}
+        <div className="subir absolute bottom-[9%] left-[6%] z-30 hidden md:block" style={{ animationDelay: "1100ms" }}>
+          <div className="border-t border-white/40 pt-5 pr-5 border-r text-right">
+            <p className="caps !text-white/80 leading-[2.4]">Desenvolvedor<br />Full-stack</p>
+            <p className="caps mt-1 leading-[2.4]">Web · Mobile · Backend</p>
           </div>
+          <span className="block h-24 w-px bg-white/40 ml-auto" />
+        </div>
 
-          {/* Terminal */}
-          <div className="parallax relative mt-6 w-fit mx-auto lg:mt-0 lg:mx-0 lg:absolute lg:-left-20 lg:-bottom-6 z-40" style={{ "--f": 18 } as React.CSSProperties}>
-            <div className="subir" style={{ animationDelay: "1000ms" }}>
-              <Terminal />
-            </div>
-          </div>
+        {/* Scroll */}
+        <a href="#sobre" className="subir absolute bottom-[4%] left-1/2 z-30 -translate-x-1/2 flex flex-col items-center gap-2" style={{ animationDelay: "1300ms" }}>
+          <span className="relative h-9 w-5 rounded-full border border-white/60">
+            <span className="roda absolute left-1/2 top-2 h-1.5 w-0.5 -translate-x-1/2 rounded-full bg-[#ff3b2f]" />
+          </span>
+          <span className="caps !text-[0.55rem]">Scroll</span>
+        </a>
 
-          {/* Relógio */}
-          <div className="parallax relative mt-3 w-fit mx-auto lg:mt-0 lg:mx-0 lg:absolute lg:-right-6 lg:-bottom-2 z-40" style={{ "--f": 12 } as React.CSSProperties}>
-            <div className="subir" style={{ animationDelay: "1200ms" }}>
-              <GithubChip />
-            </div>
-          </div>
+        {/* Redes, canto inferior direito */}
+        <div className="subir absolute bottom-[5%] right-[5%] z-30 flex items-center gap-4" style={{ animationDelay: "1400ms" }}>
+          <span className="caps hidden sm:inline !text-white/70">@vitiliosousa</span>
+          <span className="hidden sm:block h-px w-16 bg-white/25" />
+          {social.map(({ icon: Icon, href, label }) => (
+            <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className="text-white/70 hover:text-[#ff3b2f] transition-colors">
+              <Icon size={15} />
+            </a>
+          ))}
         </div>
       </div>
     </section>

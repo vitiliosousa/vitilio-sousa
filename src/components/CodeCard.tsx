@@ -16,7 +16,7 @@ const lines: Tok[][] = [
   [["};"]],
 ];
 
-const color = { k: "text-[#a6d85a]", s: "text-[#ecd94c]", p: "text-[#d9e8b0]", c: "text-muted-foreground" } as const;
+const color = { k: "text-[#ff3b2f]", s: "text-[#ff8a2a]", p: "text-[#ffc9a8]", c: "text-muted-foreground" } as const;
 
 /** Code window whose lines type in one after the other when it scrolls into view. */
 export default function CodeCard() {
@@ -37,8 +37,8 @@ export default function CodeCard() {
     <div ref={ref} className="glass overflow-hidden shadow-2xl">
       <div className="flex items-center gap-2 px-5 py-3 border-b border-white/10">
         <span className="w-2.5 h-2.5 rounded-full bg-[#f26b5b]" />
-        <span className="w-2.5 h-2.5 rounded-full bg-[#ecd94c]" />
-        <span className="w-2.5 h-2.5 rounded-full bg-[#a6d85a]" />
+        <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
+        <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
         <span className="ml-3 font-mono text-xs text-muted-foreground">sobre.ts</span>
       </div>
       <pre className="p-6 font-mono text-[0.8rem] sm:text-sm leading-7 overflow-x-auto">
@@ -51,7 +51,7 @@ export default function CodeCard() {
             {line.map(([t, c], j) => (
               <span key={j} className={c ? color[c] : "text-foreground"}>{t}</span>
             ))}
-            {i === lines.length - 1 && <span className="cursor text-[#a6d85a]"> ▍</span>}
+            {i === lines.length - 1 && <span className="cursor text-[#ff3b2f]"> ▍</span>}
           </div>
         ))}
       </pre>

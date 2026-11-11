@@ -92,7 +92,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                     </a>
                   )}
                   {project.github && (
-                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm hover:text-[#a6d85a] transition-colors">
+                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm hover:text-[#ff3b2f] transition-colors">
                       <Github size={16} /> Código no GitHub
                     </a>
                   )}
@@ -111,7 +111,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                 {project.features.map((f, i) => (
                   <Reveal key={f.title} delay={(i % 2) * 100}>
                     <div className="glass lift p-7 h-full">
-                      <span className="font-mono text-sm text-[#a6d85a]">{String(i + 1).padStart(2, "0")}</span>
+                      <span className="font-mono text-sm text-[#ff3b2f]">{String(i + 1).padStart(2, "0")}</span>
                       <h3 className="mt-4 text-xl font-semibold">{f.title}</h3>
                       <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{f.text}</p>
                     </div>
@@ -134,7 +134,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               )}
               {project.result && (
                 <Reveal delay={120}>
-                  <div className="h-full border-t border-[#a6d85a]/50 pt-6">
+                  <div className="h-full border-t border-[#ff3b2f]/50 pt-6">
                     <p className="eyebrow mb-4">O resultado</p>
                     <p className="text-lg leading-relaxed">{project.result}</p>
                   </div>

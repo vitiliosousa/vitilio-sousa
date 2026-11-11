@@ -35,55 +35,57 @@ export default function Contact() {
   };
 
   const field =
-    "w-full px-5 py-4 rounded-2xl bg-white/[0.04] border border-white/10 placeholder:text-muted-foreground focus:outline-none focus:border-[#a6d85a]/60 focus:shadow-[0_0_0_4px_rgba(166,216,90,0.12)] transition-all";
+    "w-full bg-transparent border-b border-white/25 px-0 py-4 text-base placeholder:text-white/35 focus:outline-none focus:border-[#ff3b2f] transition-colors";
 
   return (
-    <section id="contato" className="py-28 px-4">
-      <Reveal className="max-w-6xl mx-auto">
-        <div className="glass relative overflow-hidden p-8 md:p-16">
-          <div className="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-[#e9d84f]/20 blur-3xl" />
-          <div className="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-[#3f8f86]/30 blur-3xl" />
+    <section id="contato" className="px-3 md:px-5 py-6 md:py-10">
+      <Reveal>
+        <div className="frame overflow-hidden p-8 md:p-16">
+          <div className="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-[#ff6a2a]/10 blur-3xl" />
 
-          <div className="relative grid lg:grid-cols-[1.1fr_1fr] gap-14">
+          <div className="relative grid lg:grid-cols-[1.2fr_1fr] gap-16">
             <div>
               <SectionTitle
                 eyebrow="Contacto"
                 lines={["Vamos", <span key="b" className="text-accent-gradient">conversar.</span>]}
               />
 
-              <p className="mt-6 text-muted-foreground max-w-md">
+              <p className="mt-8 text-muted-foreground max-w-md">
                 Para projectos, colaborações ou só para trocar ideias.
               </p>
 
               <a
                 href="mailto:vitiliodesousa@gmail.com"
-                className="group mt-8 inline-flex items-center gap-3 text-xl md:text-2xl border-b border-white/30 pb-2 hover:border-[#a6d85a] hover:text-[#a6d85a] transition-colors"
+                data-cursor
+                className="group mt-10 inline-flex items-center gap-3 text-xl md:text-3xl font-bold border-b border-white/30 pb-2 hover:border-[#ff3b2f] hover:text-[#ff3b2f] transition-colors"
               >
                 <Scramble text="vitiliodesousa@gmail.com" />
                 <ArrowUpRight className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </a>
 
-              <div className="mt-8 flex flex-col gap-3 text-sm text-muted-foreground">
-                <a href="tel:+258863183634" className="inline-flex items-center gap-3 hover:text-foreground transition-colors"><Phone size={16} className="text-[#a6d85a]" /> +258 86 318 3634</a>
-                <a href="https://wa.me/258863183634" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 hover:text-foreground transition-colors"><FaWhatsapp size={16} className="text-[#a6d85a]" /> WhatsApp</a>
-                <span className="inline-flex items-center gap-3"><MapPin size={16} className="text-[#a6d85a]" /> Maputo, Moçambique</span>
+              <div className="mt-10 flex flex-col gap-3 text-sm text-muted-foreground">
+                <a href="tel:+258863183634" className="inline-flex items-center gap-3 hover:text-foreground transition-colors"><Phone size={15} className="text-[#ff3b2f]" /> +258 86 318 3634</a>
+                <a href="https://wa.me/258863183634" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 hover:text-foreground transition-colors"><FaWhatsapp size={15} className="text-[#ff3b2f]" /> WhatsApp</a>
+                <span className="inline-flex items-center gap-3"><MapPin size={15} className="text-[#ff3b2f]" /> Maputo, Moçambique</span>
               </div>
             </div>
 
-            <form className="space-y-4" onSubmit={handleSubmit}>
+            <form className="space-y-6 self-end" onSubmit={handleSubmit}>
               <input type="text" placeholder="O teu nome" className={field} value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
               <input type="email" placeholder="O teu email" className={field} value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
-              <textarea placeholder="A tua mensagem" rows={5} className={`${field} resize-none`} value={formData.message}
+              <textarea placeholder="A tua mensagem" rows={4} className={`${field} resize-none`} value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })} />
-              <Magnetic strength={0.12}>
-                <button className="btn-accent px-10 py-4 text-sm" type="submit">
-                  Enviar mensagem
-                </button>
-              </Magnetic>
+              <div className="pt-2">
+                <Magnetic strength={0.12}>
+                  <button className="btn-accent px-10 py-4 text-xs tracking-[0.25em] uppercase" type="submit">
+                    Enviar
+                  </button>
+                </Magnetic>
+              </div>
               {status === "success" && (
-                <p className="text-sm text-[#a6d85a]">Mensagem enviada! Respondo em breve.</p>
+                <p className="text-sm text-[#ff3b2f]">Mensagem enviada! Respondo em breve.</p>
               )}
               {status === "error" && (
                 <p className="text-sm text-destructive">Erro ao enviar. Tenta novamente mais tarde.</p>

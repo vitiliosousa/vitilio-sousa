@@ -1,102 +1,76 @@
 'use client'
-import { useState, useEffect } from "react";
-import { X, Menu } from "lucide-react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { X } from "lucide-react";
 
-const menuItems = [
-  { name: 'Início', href: '/#inicio' },
-  { name: 'Sobre', href: '/#sobre' },
-  { name: 'Projectos', href: '/#projetos' },
-  { name: 'Skills', href: '/#skills' },
-  { name: 'Processo', href: '/#processo' },
+const items = [
+  { name: "Início", href: "/#inicio" },
+  { name: "Sobre", href: "/#sobre" },
+  { name: "Projectos", href: "/#projetos" },
+  { name: "Skills", href: "/#skills" },
+  { name: "Processo", href: "/#processo" },
+  { name: "Contacto", href: "/#contato" },
 ];
 
 export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('inicio');
-  const pathname = usePathname();
-  const onHome = pathname === '/';
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const sections = ['inicio', 'sobre', 'projetos', 'skills', 'processo', 'contato'];
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-      const position = window.scrollY + 120;
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const element = document.getElementById(sections[i]);
-        if (element && element.offsetTop <= position) {
-          setActiveSection(sections[i]);
-          break;
-        }
-      }
-    };
-    handleScroll();
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
 
   return (
-    <header
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 border-b ${
-        isScrolled || isMenuOpen
-          ? 'bg-[#141414]/80 backdrop-blur-xl border-white/10'
-          : 'bg-transparent border-transparent'
-      }`}
-    >
-      <nav className="mx-auto max-w-6xl flex items-center justify-between px-4 h-16">
-        <Link href="/#inicio" className="group font-mono text-base tracking-tight">
-          <span className="text-[#a6d85a] group-hover:text-[#ecd94c] transition-colors">&lt;</span>
-          vitiliosousa
-          <span className="text-[#a6d85a] group-hover:text-[#ecd94c] transition-colors">/&gt;</span>
+    <>
+      <header className="fixed inset-x-0 top-0 z-50 flex items-center justify-between px-6 md:px-10 pt-6 pointer-events-none">
+        <Link href="/#inicio" className="pointer-events-auto border border-white/50 bg-black/40 backdrop-blur px-3 py-1.5 font-mono text-xs hover:border-[#ff3b2f] hover:text-[#ff3b2f] transition-colors">
+          &lt;vitiliosousa/&gt;
         </Link>
 
-        <div className="hidden md:flex items-center gap-8">
-          {menuItems.map((item) => {
-            const active = onHome && activeSection === item.href.substring(2);
-            return (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={`relative text-sm py-1 transition-colors ${
-                  active ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
-                }`}
-              >
-                {item.name}
-                <span
-                  className={`absolute left-0 -bottom-0.5 h-px bg-gradient-to-r from-[#ecd94c] to-[#9bd160] transition-all duration-300 ${
-                    active ? 'w-full' : 'w-0'
-                  }`}
-                />
-              </Link>
-            );
-          })}
-        </div>
-
-        <Link href="/#contato" className="hidden md:inline-block btn-accent text-sm px-5 py-2">
-          Contacto
+        <Link href="/#inicio" aria-label="Início" className="pointer-events-auto absolute left-1/2 -translate-x-1/2 hidden md:block">
+          <span className="relative block h-5 w-5 rounded-full border-[3px] border-white">
+            <span className="absolute left-1/2 top-[calc(100%+6px)] h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-white" />
+          </span>
         </Link>
 
-        <button className="md:hidden p-2" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Menu">
-          {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
+        <button
+          onClick={() => setOpen(true)}
+          className="pointer-events-auto caps !text-white border border-white/40 bg-black/40 backdrop-blur rounded-full px-5 py-2.5 hover:border-[#ff3b2f] hover:text-[#ff3b2f] transition-colors"
+        >
+          Menu
         </button>
-      </nav>
+      </header>
 
-      {isMenuOpen && (
-        <div className="md:hidden px-4 pb-4 flex flex-col">
-          {[...menuItems, { name: 'Contacto', href: '/#contato' }].map((item) => (
+      {/* Menu em ecrã inteiro */}
+      <div
+        className={`fixed inset-0 z-[60] bg-black/95 backdrop-blur-xl transition-all duration-500 ${
+          open ? "opacity-100 visible" : "opacity-0 invisible"
+        }`}
+      >
+        <button onClick={() => setOpen(false)} aria-label="Fechar" className="absolute right-6 md:right-10 top-6 caps !text-white inline-flex items-center gap-2 border border-white/40 rounded-full px-5 py-2.5 hover:border-[#ff3b2f]">
+          <X size={14} /> Fechar
+        </button>
+        <nav className="h-full flex flex-col justify-center px-6 md:px-16 dimmer">
+          {items.map((item, i) => (
             <Link
               key={item.name}
               href={item.href}
-              onClick={() => setIsMenuOpen(false)}
-              className="py-3 text-muted-foreground hover:text-foreground border-t border-white/5"
+              onClick={() => setOpen(false)}
+              className="dim-item group flex items-baseline gap-5 py-2 md:py-3"
+              style={{
+                transform: open ? "none" : "translateY(40px)",
+                opacity: open ? undefined : 0,
+                transition: `transform 0.6s ${150 + i * 70}ms cubic-bezier(0.2,0.7,0.2,1), opacity 0.3s`,
+              }}
             >
-              {item.name}
+              <span className="caps !text-[0.6rem] text-[#ff3b2f]">{String(i + 1).padStart(2, "0")}</span>
+              <span className="display contorno text-5xl sm:text-7xl md:text-8xl group-hover:[--o-fill:#fff] group-hover:[--o-stroke:#fff] group-hover:translate-x-3 transition-transform">
+                {item.name}
+              </span>
             </Link>
           ))}
-        </div>
-      )}
-    </header>
+        </nav>
+      </div>
+    </>
   );
 }

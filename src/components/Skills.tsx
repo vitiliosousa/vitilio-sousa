@@ -1,5 +1,3 @@
-'use client'
-import { useState } from "react";
 import {
   SiJavascript, SiReact, SiNextdotjs, SiNodedotjs, SiPython, SiPostgresql, SiMysql, SiMongodb,
   SiSpringboot, SiFigma, SiGit, SiHtml5, SiCss, SiTailwindcss, SiSupabase, SiTypescript,
@@ -110,70 +108,39 @@ const areas: { id: string; title: string; text: string; tech: Tech[] }[] = [
 ];
 
 export default function Skills() {
-  const [focus, setFocus] = useState<string | null>(null);
-  const toggle = (id: string) => setFocus((f) => (f === id ? null : id));
-
   return (
-    <section id="skills" className="py-28 px-4">
-      <div className="max-w-6xl mx-auto">
-        <SectionTitle eyebrow="Skills" lines={["Tecnologias", <span key="b" className="text-accent-gradient">com que trabalho.</span>]} className="mb-10" />
+    <section id="skills" className="px-3 md:px-5 py-6 md:py-10">
+      <div className="frame overflow-hidden p-8 md:p-16">
+        <SectionTitle
+          eyebrow="Skills"
+          lines={["Tecnologias", <span key="b" className="text-accent-gradient">com que trabalho.</span>]}
+          className="mb-14 md:mb-20"
+        />
 
-        {/* Filtros: nada fica escondido, só realçado */}
-        <Reveal className="mb-12 flex flex-wrap gap-2">
-          <button
-            onClick={() => setFocus(null)}
-            className={`px-4 py-2 rounded-full text-sm border transition-colors ${
-              focus === null ? "btn-accent border-transparent" : "border-white/15 text-muted-foreground hover:text-foreground hover:border-white/30"
-            }`}
-          >
-            Tudo
-          </button>
-          {areas.map((a) => (
-            <button
-              key={a.id}
-              onClick={() => toggle(a.id)}
-              className={`px-4 py-2 rounded-full text-sm border transition-colors ${
-                focus === a.id
-                  ? "border-[#a6d85a] bg-[#a6d85a]/10 text-foreground"
-                  : "border-white/15 text-muted-foreground hover:text-foreground hover:border-white/30"
-              }`}
-            >
-              {a.title}
-            </button>
-          ))}
-        </Reveal>
-
-        <div className="border-t border-white/10">
-          {areas.map((a) => {
-            const dim = focus !== null && focus !== a.id;
-            return (
-              <Reveal key={a.id}>
-                <div
-                  className={`grid lg:grid-cols-[15rem_1fr] gap-6 lg:gap-10 py-8 border-b border-white/10 transition-all duration-500 ${
-                    dim ? "opacity-25 scale-[0.99] blur-[1px]" : ""
-                  }`}
-                >
-                  <button onClick={() => toggle(a.id)} className="text-left group self-start">
-                    <span className="flex items-baseline gap-3">
-                      <span className="text-xl font-semibold group-hover:text-[#a6d85a] transition-colors">{a.title}</span>
-                      <span className="font-mono text-xs text-[#a6d85a]">{String(a.tech.length).padStart(2, "0")}</span>
-                    </span>
-                    <span className="mt-2 block text-sm text-muted-foreground leading-snug">{a.text}</span>
-                  </button>
-
-                  <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3">
-                    {a.tech.map(({ name, note, icon: Icon }) => (
-                      <div key={name} className="glass lift group p-4 !rounded-2xl">
-                        <Icon size={24} className="text-muted-foreground group-hover:text-[#a6d85a] group-hover:scale-110 transition-all duration-300" />
-                        <p className="mt-4 font-semibold text-sm">{name}</p>
-                        <p className="mt-1 text-xs text-muted-foreground leading-snug">{note}</p>
-                      </div>
-                    ))}
+        <div className="dimmer border-t border-white/10">
+          {areas.map((a, i) => (
+            <div key={a.id} className="dim-item">
+              <Reveal delay={(i % 3) * 60}>
+                <div className="group grid md:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)] gap-x-10 gap-y-5 border-b border-white/10 py-7 md:py-9">
+                  <div className="flex items-baseline gap-4">
+                    <span className="caps !text-[#ff3b2f]">{String(a.tech.length).padStart(2, "0")}</span>
+                    <h3 className="display contorno text-3xl sm:text-4xl md:text-5xl group-hover:[--o-fill:#fff] group-hover:[--o-stroke:#fff]">
+                      {a.title}
+                    </h3>
                   </div>
+
+                  <ul className="flex flex-wrap items-center gap-x-7 gap-y-3 md:justify-end">
+                    {a.tech.map(({ name, note, icon: Icon }) => (
+                      <li key={name} title={note} className="inline-flex items-center gap-2 text-sm font-medium text-white/55 hover:text-[#ff3b2f] transition-colors cursor-default">
+                        <Icon size={16} />
+                        {name}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </Reveal>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </div>
     </section>

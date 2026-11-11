@@ -18,14 +18,14 @@ export default function OpengraphImage() {
           color: "#f4f1ea",
           backgroundColor: "#141414",
           backgroundImage:
-            "radial-gradient(circle at 12% 10%, rgba(150,150,40,0.35), rgba(20,20,20,0) 45%), radial-gradient(circle at 95% 90%, rgba(50,130,125,0.35), rgba(20,20,20,0) 45%)",
+            "radial-gradient(circle at 12% 10%, rgba(255,90,40,0.3), rgba(20,20,20,0) 45%), radial-gradient(circle at 95% 90%, rgba(200,40,30,0.3), rgba(20,20,20,0) 45%)",
         }}
       >
-        <div style={{ display: "flex", fontSize: 40, color: "#a6d85a" }}>{"</>"}</div>
+        <div style={{ display: "flex", fontSize: 40, color: "#ff3b2f" }}>{"</>"}</div>
         <div style={{ display: "flex", fontSize: 108, fontWeight: 700, letterSpacing: -4, marginTop: 24 }}>
           Vitilio Sousa
         </div>
-        <div style={{ display: "flex", fontSize: 46, color: "#d6e87a", marginTop: 12 }}>
+        <div style={{ display: "flex", fontSize: 46, color: "#ffb27a", marginTop: 12 }}>
           Full-stack developer
         </div>
         <div style={{ display: "flex", fontSize: 28, color: "#a3a09a", marginTop: 40 }}>

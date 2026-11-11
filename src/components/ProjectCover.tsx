@@ -29,8 +29,8 @@ export default function ProjectCover({
       className="absolute inset-0 bg-[#1a1a1a] overflow-hidden"
       style={{ backgroundImage: "radial-gradient(rgb(255 255 255 / 0.1) 1px, transparent 1px)", backgroundSize: "22px 22px" }}
     >
-      <div className="absolute -top-1/4 -right-1/4 w-3/4 aspect-square rounded-full bg-gradient-to-br from-[#ecd94c]/25 to-[#9bd160]/10 blur-3xl" />
-      <div className="absolute -bottom-1/3 -left-1/4 w-2/3 aspect-square rounded-full bg-[#3f8f86]/20 blur-3xl" />
+      <div className="absolute -top-1/4 -right-1/4 w-3/4 aspect-square rounded-full bg-gradient-to-br from-[#ff8a2a]/25 to-[#e5251b]/10 blur-3xl" />
+      <div className="absolute -bottom-1/3 -left-1/4 w-2/3 aspect-square rounded-full bg-[#b3261e]/20 blur-3xl" />
       <span className="absolute inset-0 flex items-center justify-center font-mono text-5xl md:text-6xl text-white/20">
         {"</>"}
       </span>

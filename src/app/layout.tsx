@@ -1,15 +1,24 @@
 import type { Metadata } from "next";
-import { Raleway, JetBrains_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Effects from "@/components/Effects";
+import Cursor from "@/components/Cursor";
 
-const raleway = Raleway({
-  subsets: ["latin"],
+const montserrat = localFont({
+  src: [
+    { path: "../assets/fonts/montserrat-400.woff2", weight: "400" },
+    { path: "../assets/fonts/montserrat-500.woff2", weight: "500" },
+    { path: "../assets/fonts/montserrat-600.woff2", weight: "600" },
+    { path: "../assets/fonts/montserrat-700.woff2", weight: "700" },
+    { path: "../assets/fonts/montserrat-800.woff2", weight: "800" },
+    { path: "../assets/fonts/montserrat-900.woff2", weight: "900" },
+  ],
   variable: "--font-sans",
 });
 
-const mono = JetBrains_Mono({
-  subsets: ["latin"],
+const mono = localFont({
+  src: "../assets/fonts/jetbrains-mono.woff2",
+  weight: "400 700",
   variable: "--font-mono",
 });
 
@@ -60,12 +69,13 @@ export default function RootLayout({
   return (
     <html lang="pt">
       <body
-        className={`${raleway.variable} ${mono.variable} font-sans antialiased`}
+        className={`${montserrat.variable} ${mono.variable} font-sans antialiased`}
         suppressHydrationWarning
       >
         <div className="ambient" aria-hidden />
         <div className="grain" aria-hidden />
         <Effects />
+        <Cursor />
         {children}
       </body>
     </html>
