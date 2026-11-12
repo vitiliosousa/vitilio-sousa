@@ -1,9 +1,7 @@
 import type { StaticImageData } from "next/image";
 
 import bug from "@/assets/bug.png"
-import cyber from "@/assets/cyber.png"
 import girl from "@/assets/girl.png"
-import laisher from "@/assets/laisher.png"
 import mozcyberCover from "@/assets/mozcyber.jpg"
 import bisky from "@/assets/bisky.jpg"
 import supremogo from "@/assets/supremogo.jpg"
@@ -140,29 +138,6 @@ export const projectsData: Project[] = [
       { title: "Informática Aplicada e STEM", text: "Portais de aprendizagem sobre informática, introdução à programação e ciência, tecnologia, engenharia e matemática." },
       { title: "Inspira+ e Universidade Maria Ana Mogas", text: "Recursos académicos, bolsas e oportunidades de estudo, e o site institucional que liga estudantes a cursos." },
     ],
-  },
-  // EXEMPLO FICTÍCIO: serve só para ver a página preenchida. Apagar quando houver dados reais.
-  {
-    slug: "projecto-de-exemplo",
-    title: "Plataforma de Exemplo",
-    year: "2025",
-    description: "Plataforma web de gestão de pedidos e equipas, com painel em tempo real, perfis de acesso e relatórios exportáveis.",
-    overview: "Este é um projecto fictício, criado para mostrar como a página de um projecto fica quando está completa. A plataforma permite a uma equipa receber pedidos, atribuí-los a responsáveis, acompanhar o estado de cada um em tempo real e gerar relatórios para a gestão. O objectivo foi substituir folhas de cálculo dispersas por um único sítio claro, rápido e seguro.",
-    role: "Full-stack developer",
-    duration: "4 meses",
-    tech: ["Next.js", "NestJS", "PostgreSQL", "Docker"],
-    demo: "https://example.com",
-    github: "https://github.com/vitiliosousa",
-    image: cyber,
-    features: [
-      { title: "Painel em tempo real", text: "Estado dos pedidos actualizado sem recarregar a página, com filtros por equipa e prioridade." },
-      { title: "Perfis e permissões", text: "Cada utilizador vê e faz apenas o que o seu perfil permite, com registo de todas as acções." },
-      { title: "Fluxo de aprovação", text: "Pedidos passam por vários níveis de aprovação antes de serem executados." },
-      { title: "Relatórios exportáveis", text: "Resumos por período e por equipa, exportáveis para PDF e Excel." },
-    ],
-    challenge: "Os pedidos chegavam por canais diferentes e sem estrutura, o que tornava difícil saber quem estava a tratar de quê e quanto tempo cada pedido demorava.",
-    result: "A equipa passou a ter uma única fonte de verdade: menos pedidos perdidos, tempos de resposta visíveis e relatórios prontos em segundos.",
-    gallery: [bug, girl, laisher],
   },
 ];
 
