@@ -32,7 +32,6 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
     ["Ano", project.year],
     ["Papel", project.role],
     ["Duração", project.duration],
-    ["Estado", project.status],
   ].filter(([, v]) => v) as [string, string][];
 
   return (
@@ -49,6 +48,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             {project.title}
           </h1>
 
+          {meta.length > 0 && (
           <dl className="subir mt-10 flex flex-wrap gap-x-12 gap-y-5 border-y border-white/10 py-6" style={{ animationDelay: "200ms" }}>
             {meta.map(([k, v]) => (
               <div key={k}>
@@ -57,6 +57,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               </div>
             ))}
           </dl>
+          )}
 
           <div className="subir relative mt-12 aspect-[16/9] overflow-hidden rounded-[var(--radius)] border border-white/10" style={{ animationDelay: "300ms" }}>
             <ProjectCover project={project} priority sizes="(min-width: 1024px) 1024px, 100vw" />
@@ -151,8 +152,8 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               </Reveal>
               <div className="grid sm:grid-cols-2 gap-5">
                 {project.gallery.map((img, i) => (
-                  <Reveal key={i} delay={(i % 2) * 100} className={i === 0 ? "sm:col-span-2" : ""}>
-                    <div className={`group relative overflow-hidden rounded-[var(--radius)] border border-white/10 ${i === 0 ? "aspect-[16/8]" : "aspect-[4/3]"}`}>
+                  <Reveal key={i} delay={(i % 2) * 100} className={i === 0 && project.gallery!.length % 2 === 1 ? "sm:col-span-2" : ""}>
+                    <div className={`group relative overflow-hidden rounded-[var(--radius)] border border-white/10 ${i === 0 && project.gallery!.length % 2 === 1 ? "aspect-[16/8]" : "aspect-[4/3]"}`}>
                       <Image
                         src={img}
                         alt={`${project.title}, imagem ${i + 1}`}
