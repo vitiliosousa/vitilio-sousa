@@ -134,7 +134,7 @@ export default function Skills() {
               onClick={() => toggle(a.id)}
               className={`px-4 py-2 rounded-full text-sm border transition-colors ${
                 focus === a.id
-                  ? "border-[#a6d85a] bg-[#a6d85a]/10 text-foreground"
+                  ? "border-[#ff3b2f] bg-[#ff3b2f]/10 text-foreground"
                   : "border-white/15 text-muted-foreground hover:text-foreground hover:border-white/30"
               }`}
             >
@@ -155,8 +155,8 @@ export default function Skills() {
                 >
                   <button onClick={() => toggle(a.id)} className="text-left group self-start">
                     <span className="flex items-baseline gap-3">
-                      <span className="text-xl font-semibold group-hover:text-[#a6d85a] transition-colors">{a.title}</span>
-                      <span className="font-mono text-xs text-[#a6d85a]">{String(a.tech.length).padStart(2, "0")}</span>
+                      <span className="text-xl font-semibold group-hover:text-[#ff3b2f] transition-colors">{a.title}</span>
+                      <span className="font-mono text-xs text-[#ff3b2f]">{String(a.tech.length).padStart(2, "0")}</span>
                     </span>
                     <span className="mt-2 block text-sm text-muted-foreground leading-snug">{a.text}</span>
                   </button>
@@ -164,7 +164,7 @@ export default function Skills() {
                   <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3">
                     {a.tech.map(({ name, note, icon: Icon }) => (
                       <div key={name} className="glass lift group p-4 !rounded-2xl">
-                        <Icon size={24} className="text-muted-foreground group-hover:text-[#a6d85a] group-hover:scale-110 transition-all duration-300" />
+                        <Icon size={24} className="text-muted-foreground group-hover:text-[#ff3b2f] group-hover:scale-110 transition-all duration-300" />
                         <p className="mt-4 font-semibold text-sm">{name}</p>
                         <p className="mt-1 text-xs text-muted-foreground leading-snug">{note}</p>
                       </div>

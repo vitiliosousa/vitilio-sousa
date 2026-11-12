@@ -32,7 +32,6 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
     ["Ano", project.year],
     ["Papel", project.role],
     ["Duração", project.duration],
-    ["Estado", project.status],
   ].filter(([, v]) => v) as [string, string][];
 
   return (
@@ -49,6 +48,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             {project.title}
           </h1>
 
+          {meta.length > 0 && (
           <dl className="subir mt-10 flex flex-wrap gap-x-12 gap-y-5 border-y border-white/10 py-6" style={{ animationDelay: "200ms" }}>
             {meta.map(([k, v]) => (
               <div key={k}>
@@ -57,6 +57,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               </div>
             ))}
           </dl>
+          )}
 
           <div className="subir relative mt-12 aspect-[16/9] overflow-hidden rounded-[var(--radius)] border border-white/10" style={{ animationDelay: "300ms" }}>
             <ProjectCover project={project} priority sizes="(min-width: 1024px) 1024px, 100vw" />
@@ -92,7 +93,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                     </a>
                   )}
                   {project.github && (
-                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm hover:text-[#a6d85a] transition-colors">
+                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm hover:text-[#ff3b2f] transition-colors">
                       <Github size={16} /> Código no GitHub
                     </a>
                   )}
@@ -111,7 +112,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                 {project.features.map((f, i) => (
                   <Reveal key={f.title} delay={(i % 2) * 100}>
                     <div className="glass lift p-7 h-full">
-                      <span className="font-mono text-sm text-[#a6d85a]">{String(i + 1).padStart(2, "0")}</span>
+                      <span className="font-mono text-sm text-[#ff3b2f]">{String(i + 1).padStart(2, "0")}</span>
                       <h3 className="mt-4 text-xl font-semibold">{f.title}</h3>
                       <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{f.text}</p>
                     </div>
@@ -134,7 +135,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               )}
               {project.result && (
                 <Reveal delay={120}>
-                  <div className="h-full border-t border-[#a6d85a]/50 pt-6">
+                  <div className="h-full border-t border-[#ff3b2f]/50 pt-6">
                     <p className="eyebrow mb-4">O resultado</p>
                     <p className="text-lg leading-relaxed">{project.result}</p>
                   </div>
@@ -151,8 +152,8 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               </Reveal>
               <div className="grid sm:grid-cols-2 gap-5">
                 {project.gallery.map((img, i) => (
-                  <Reveal key={i} delay={(i % 2) * 100} className={i === 0 ? "sm:col-span-2" : ""}>
-                    <div className={`group relative overflow-hidden rounded-[var(--radius)] border border-white/10 ${i === 0 ? "aspect-[16/8]" : "aspect-[4/3]"}`}>
+                  <Reveal key={i} delay={(i % 2) * 100} className={i === 0 && project.gallery!.length % 2 === 1 ? "sm:col-span-2" : ""}>
+                    <div className={`group relative overflow-hidden rounded-[var(--radius)] border border-white/10 ${i === 0 && project.gallery!.length % 2 === 1 ? "aspect-[16/8]" : "aspect-[4/3]"}`}>
                       <Image
                         src={img}
                         alt={`${project.title}, imagem ${i + 1}`}

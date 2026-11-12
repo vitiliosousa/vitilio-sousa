@@ -47,9 +47,9 @@ export default function Header() {
     >
       <nav className="mx-auto max-w-6xl flex items-center justify-between px-4 h-16">
         <Link href="/#inicio" className="group font-mono text-base tracking-tight">
-          <span className="text-[#a6d85a] group-hover:text-[#ecd94c] transition-colors">&lt;</span>
+          <span className="text-[#ff3b2f] group-hover:text-[#ff8a2a] transition-colors">&lt;</span>
           vitiliosousa
-          <span className="text-[#a6d85a] group-hover:text-[#ecd94c] transition-colors">/&gt;</span>
+          <span className="text-[#ff3b2f] group-hover:text-[#ff8a2a] transition-colors">/&gt;</span>
         </Link>
 
         <div className="hidden md:flex items-center gap-8">
@@ -65,7 +65,7 @@ export default function Header() {
               >
                 {item.name}
                 <span
-                  className={`absolute left-0 -bottom-0.5 h-px bg-gradient-to-r from-[#ecd94c] to-[#9bd160] transition-all duration-300 ${
+                  className={`absolute left-0 -bottom-0.5 h-px bg-gradient-to-r from-[#ff8a2a] to-[#e5251b] transition-all duration-300 ${
                     active ? 'w-full' : 'w-0'
                   }`}
                 />

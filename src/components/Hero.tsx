@@ -37,9 +37,9 @@ function GithubChip() {
       href="https://github.com/vitiliosousa"
       target="_blank"
       rel="noopener noreferrer"
-      className="glass flutuar-chip !rounded-full flex items-center gap-3 px-4 py-2 text-xs shadow-xl hover:border-[#a6d85a]/50"
+      className="glass flutuar-chip !rounded-full flex items-center gap-3 px-4 py-2 text-xs shadow-xl hover:border-[#ff3b2f]/50"
     >
-      <Github size={14} className="text-[#a6d85a]" />
+      <Github size={14} className="text-[#ff3b2f]" />
       <span className="font-mono">github.com/vitiliosousa</span>
     </a>
   );
@@ -93,7 +93,7 @@ export default function Hero() {
               </a>
             </Magnetic>
             <Magnetic strength={0.4}>
-              <a href="#contato" className="group inline-flex items-center gap-2 text-sm px-3 py-3 hover:text-[#a6d85a] transition-colors">
+              <a href="#contato" className="group inline-flex items-center gap-2 text-sm px-3 py-3 hover:text-[#ff3b2f] transition-colors">
                 Contactar
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </a>
@@ -104,7 +104,7 @@ export default function Hero() {
         {/* Foto + órbita */}
         <div className="relative mx-auto w-full max-w-sm lg:max-w-md">
           <div className="parallax absolute inset-0" style={{ "--f": 8 } as React.CSSProperties}>
-            <div className="absolute left-1/2 top-[6%] -translate-x-1/2 w-[110%] h-[78%] rounded-[50%] bg-gradient-to-b from-[#ecd94c]/35 via-[#9bd160]/20 to-transparent blur-3xl" />
+            <div className="absolute left-1/2 top-[6%] -translate-x-1/2 w-[110%] h-[78%] rounded-[50%] bg-gradient-to-b from-[#ff8a2a]/35 via-[#e5251b]/20 to-transparent blur-3xl" />
             {/* anel da órbita */}
             <div className="absolute left-1/2 top-[60%] w-[96%] lg:w-[124%] h-[26%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-white/10" style={{ rotate: "-9deg" }} />
           </div>
@@ -132,7 +132,7 @@ export default function Hero() {
                   <textPath href="#circ">WEB • MOBILE • BACKEND • DADOS •</textPath>
                 </text>
               </svg>
-              <span className="absolute inset-0 m-auto w-9 h-9 rounded-full bg-[#141414] border border-white/20 flex items-center justify-center text-[#a6d85a] font-mono text-xs">
+              <span className="absolute inset-0 m-auto w-9 h-9 rounded-full bg-[#141414] border border-white/20 flex items-center justify-center text-[#ff3b2f] font-mono text-xs">
                 {"</>"}
               </span>
             </div>

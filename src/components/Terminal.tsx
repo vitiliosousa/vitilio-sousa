@@ -41,21 +41,21 @@ export default function Terminal() {
     <div className="glass px-5 py-4 font-mono text-[0.72rem] leading-relaxed shadow-2xl w-60">
       <div className="flex gap-1.5 mb-3">
         <span className="w-2 h-2 rounded-full bg-[#f26b5b]" />
-        <span className="w-2 h-2 rounded-full bg-[#ecd94c]" />
-        <span className="w-2 h-2 rounded-full bg-[#a6d85a]" />
+        <span className="w-2 h-2 rounded-full bg-[#ffbd2e]" />
+        <span className="w-2 h-2 rounded-full bg-[#27c93f]" />
       </div>
       <div className="min-h-[5.6rem]">
         {done.map((l, i) => (
           <div key={`${l.cmd}-${i}`} className="opacity-60">
-            <p><span className="text-[#a6d85a]">$</span> {l.cmd}</p>
+            <p><span className="text-[#ff3b2f]">$</span> {l.cmd}</p>
             <p className="text-muted-foreground">{l.out}</p>
           </div>
         ))}
         <p>
-          <span className="text-[#a6d85a]">$</span> {typed}
-          {!showOut && <span className="cursor text-[#a6d85a]">▍</span>}
+          <span className="text-[#ff3b2f]">$</span> {typed}
+          {!showOut && <span className="cursor text-[#ff3b2f]">▍</span>}
         </p>
-        {showOut && <p className="text-[#ecd94c]">{cur.out}</p>}
+        {showOut && <p className="text-[#ff8a2a]">{cur.out}</p>}
       </div>
     </div>
   );

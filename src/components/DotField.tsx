@@ -47,7 +47,7 @@ export default function DotField({ className = "" }: { className?: string }) {
           const px = d > 0 ? x + (dx / d) * push : x;
           const py = d > 0 ? y + (dy / d) * push : y;
           const r = 1 + wave * 0.35 + k * 2.4;
-          if (k > 0.02) ctx.fillStyle = `rgba(190, 230, 100, ${0.15 + k * 0.85})`;
+          if (k > 0.02) ctx.fillStyle = `rgba(255, 90, 60, ${0.15 + k * 0.85})`;
           else ctx.fillStyle = `rgba(255, 255, 255, ${0.09 + wave * 0.05})`;
           ctx.beginPath();
           ctx.arc(px, py, r, 0, Math.PI * 2);
